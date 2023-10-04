@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <form id="calculatorForm">
+        <label for="firstNumber">Enter the 1st number:</label>
+        <input type="number" id="firstNumber" required><br><br>
+        
+        <label for="secondNumber">Enter the 2nd number:</label>
+        <input type="number" id="secondNumber" required><br><br>
+        
+        <input type="submit" value="Multiply">
+        <input type="submit" value="Divide">
+    </form>
+
+    <p>The Result is:</p>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('calculatorForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const firstNumber = parseFloat(document.getElementById('firstNumber').value);
+            const secondNumber = parseFloat(document.getElementById('secondNumber').value);
+            const operation = e.submitter.value;
+            let result;
+
+            if (isNaN(firstNumber) || isNaN(secondNumber)) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+
+            if (operation === 'Multiply') {
+                result = firstNumber * secondNumber;
+            } else if (operation === 'Divide') {
+                if (secondNumber === 0) {
+                    alert('Cannot divide by zero.');
+                    return;
+                }
+                result = firstNumber / secondNumber;
+            }
+
+            document.getElementById('result').textContent = `${result}`;
+        });
+    </script>
+</body>
+</html>
